@@ -17,7 +17,7 @@ class CalculatorViewControllerSpec:QuickSpec{
                 beforeEach {
                 calculatorViewController.clearButton.sendActions(for: .touchUpInside)
                 }
-                it("is pressed, the user is not currently typing"){
+                it(" is pressed, the user is not currently typing"){
                 expect(calculatorViewController.currentUserIsTyping).to(equal(false))
                 }
             }

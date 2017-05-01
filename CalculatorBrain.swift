@@ -60,20 +60,20 @@ class CalculatorBrain{
             case .Constant(let value):accumalator = value;nonBinary = true;
             case .BinaryOperations(let function): pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumalator);
             case.UniaryOperations(let function):accumalator = function(accumalator); nonBinary = true
-                description = mathematicalSymbol + String(firstOperand)
+            description = mathematicalSymbol + String(firstOperand)
             case.Equals:
+                isPartailResult = false
                 if pending != nil{
                     accumalator = pending!.binaryFunction(pending!.firstOperand, accumalator);
                     description += String(accumalator)
-                    isPartailResult = false
                 }
-            break
+                break
             }
         }
     }
     private var pending: PendingBinaryOperationInfo?
     
-    private struct PendingBinaryOperationInfo {
+    private  struct PendingBinaryOperationInfo {
         var binaryFunction: (Double, Double) ->Double
         var firstOperand: Double
     }
@@ -81,6 +81,7 @@ class CalculatorBrain{
     
     var program: PropertyList{
         get{
+            
             return internalProgram as CalculatorBrain.PropertyList
         }
         set {
@@ -98,7 +99,7 @@ class CalculatorBrain{
             }
         }
     }
-   
+    
     func undo(){
         description = description.substring(to: (description.index(before: (description.endIndex))))
     }
@@ -117,7 +118,7 @@ class CalculatorBrain{
     }
     var printTitle:String{
         get{
-        return description 
+            return description
         }
     }
     
